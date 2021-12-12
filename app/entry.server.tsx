@@ -1,11 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { RemixServer } from "remix";
 import type { EntryContext } from "remix";
-import {
-  getDataFromTree,
-  createContextValue,
-  Provider,
-} from "@react-libraries/use-ssr";
+import { getDataFromTree, Provider } from "@react-libraries/use-ssr";
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -16,7 +12,7 @@ export default async function handleRequest(
     <RemixServer context={remixContext} url={request.url} />
   );
   const markup = renderToString(
-    <Provider value={createContextValue(cache)}>
+    <Provider value={cache}>
       <RemixServer context={remixContext} url={request.url} />
       <script
         id="__REMIX_DATA"
